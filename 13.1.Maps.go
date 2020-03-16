@@ -17,6 +17,9 @@ import (
 	九. 获取 map 的长度使用 len 函数
 	十. 和 slices 类似，map 也是引用类型。当 map 被赋值为一个新变量的时候，它们指向同一个内部数据结构。
 		因此，改变其中一个变量，就会影响到另一变量。
+	十一. map 之间不能使用 == 操作符判断，== 只能用来检查 map 是否为 nil
+		判断两个 map 是否相等的方法是遍历比较两个 map 中的每个元素。
+
  */
 func main() {
 	personSalary := make(map[string]int)
@@ -68,4 +71,6 @@ func main() {
 	newPersonSalary := personSalary4
 	newPersonSalary["mike"] = 18000
 	fmt.Println("Person salary changed", personSalary4)
+
+
 }
