@@ -36,6 +36,11 @@ import (
 		数据发送方可以关闭信道，通知接收方这个信道不再有数据发送过来。
 		当从信道接收数据时，接收方可以多用一个变量来检查信道是否已经关闭。
 		v, ok := <- ch
+			如果成功接收信道所发送的数据，那么 ok 等于 true。
+			而如果 ok 等于 false，说明我们试图读取一个关闭的通道。
+			从关闭的信道读取到的值会是该信道类型的零值。
+			例如，当信道是一个 int 类型的信道时，那么从关闭的信道读取的值将会是 0。
+	十一. for range 循环用于在一个信道关闭之前，从信道接收数据。
  */
 
 func hello22(done chan bool) {
@@ -70,6 +75,42 @@ func sendData(sendch chan<- int) {
 	sendch <- 10
 }
 
+func producer(chnl chan int) {
+	for i := 0; i < 10; i++ {
+		chnl <- i
+	}
+	close(chnl)
+}
+
+func digits22(number int, dchnl chan int) {
+	for number != 0 {
+		digit := number % 10
+		dchnl <- digit
+		number /= 10
+	}
+	close(dchnl)
+}
+
+func calcSquares22(number int, squareop chan int) {
+	sum := 0
+	dch := make(chan int)
+	go digits22(number, dch)
+	for digit := range dch {
+		sum += digit * digit
+	}
+	squareop <- sum
+}
+
+func calcCubes22(number int, cubeop chan int) {
+	sum := 0
+	dch := make(chan int)
+	go digits22(number, dch)
+	for digit := range dch {
+		sum += digit * digit * digit
+	}
+	cubeop <- sum
+}
+
 
 func main() {
 	var a chan int
@@ -97,4 +138,28 @@ func main() {
 	sendch := make(chan int)
 	go sendData(sendch)
 	fmt.Println(<-sendch)
+
+	ch := make(chan int)
+	go producer(ch)
+	for {
+		v, ok := <-ch
+		if ok == false {
+			break
+		}
+		fmt.Println("Received ", v, ok)
+	}
+
+	ch2 := make(chan int)
+	go producer(ch2)
+	for v := range ch2 {
+		fmt.Println("Received ",v)
+	}
+
+	number22 := 589
+	sqrch22 := make(chan int)
+	cubech22 := make(chan int)
+	go calcSquares22(number22, sqrch22)
+	go calcCubes22(number22, cubech22)
+	squares22, cubes22 := <-sqrch22, <-cubech22
+	fmt.Println("Final output", squares22+cubes22)
 }
