@@ -21,7 +21,7 @@ type error interface {
 
 func main() {
 /*
-	f, err := os.Open("/test.txt")
+	f, err := os.Open("/learn.txt")
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -30,7 +30,7 @@ func main() {
 */
 
 /*
-	f2, err2 := os.Open("/test.txt")
+	f2, err2 := os.Open("/learn.txt")
 	if err2, ok := err2.(*os.PathError); ok {
 		fmt.Println("File at path", err2.Path, "failed to open")
 		return

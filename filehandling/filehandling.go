@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	fptr2 := flag.String("fpath", "test.txt", "file path to read from")
+	fptr2 := flag.String("fpath", "learn.txt", "file path to read from")
 	flag.Parse()
 
 	f, err := os.Open(*fptr2)
@@ -33,7 +33,7 @@ func main() {
 	}
 
 
-	fptr3 := flag.String("fpath3", "test.txt", "file path to read from")
+	fptr3 := flag.String("fpath3", "learn.txt", "file path to read from")
 	flag.Parse()
 	f2, err := os.Open(*fptr3)
 	if err != nil {

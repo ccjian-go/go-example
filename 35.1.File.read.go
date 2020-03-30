@@ -15,12 +15,12 @@ import (
 		使用 ioutil 包中的 ReadFile 函数
 	二. 使用绝对文件路径
 	三. 使用命令行标记来传递文件路径
-		通过 String 函数，创建了一个字符串标记，名称是 fpath，默认值是 test.txt，
+		通过 String 函数，创建了一个字符串标记，名称是 fpath，默认值是 learn.txt，
 		描述为 file path to read from。这个函数返回存储 flag 值的字符串变量的地址。
 		在程序访问 flag 之前，必须先调用 flag.Parse()
 		命令行
 			go install filehandling
-			wrkspacepath/bin/filehandling -fpath=/path-of-file/test.txt
+			wrkspacepath/bin/filehandling -fpath=/path-of-file/learn.txt
 	四. 将文件绑定在二进制文件中
 		安装 packr 包
 		packr 会把静态文件（例如 .txt 文件）转换为 .go 文件
@@ -39,25 +39,25 @@ import (
  */
 
 func main() {
-	//data, err := ioutil.ReadFile("test.txt")
-	data, err := ioutil.ReadFile("D:\\项目\\go-dir\\go-example\\test.txt")
+	//data, err := ioutil.ReadFile("learn.txt")
+	data, err := ioutil.ReadFile("D:\\项目\\go-dir\\go-example\\learn.txt")
 	if err != nil {
 		fmt.Println("File reading error", err)
 		return
 		}
 	fmt.Println("Contents of file:", string(data))
 
-	fptr := flag.String("fpath", "test.txt", "file path to read from")
+	fptr := flag.String("fpath", "learn.txt", "file path to read from")
 	flag.Parse()
 	fmt.Println("value of fpath is", *fptr)
 
 	//box := packr.NewBox("../filehandling")
 	box := packr.NewBox("./")
-	data2 := box.String("test.txt")
+	data2 := box.String("learn.txt")
 	fmt.Println("Contents of file:", data2)
 
 
-    fptr2 := flag.String("fpath2", "test.txt", "file path to read from")
+    fptr2 := flag.String("fpath2", "learn.txt", "file path to read from")
     flag.Parse()
     f, err := os.Open(*fptr2)
     if err != nil {
@@ -80,7 +80,7 @@ func main() {
 	}
 
 
-	fptr3 := flag.String("fpath3", "test.txt", "file path to read from")
+	fptr3 := flag.String("fpath3", "learn.txt", "file path to read from")
 	flag.Parse()
 	f2, err := os.Open(*fptr3)
 	if err != nil {
