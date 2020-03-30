@@ -1,12 +1,10 @@
 package main
 
 import (
-	"bytes"
 	"fmt"
 	"io"
 	"net/http"
 	"os"
-	"testing"
 )
 
 /**
@@ -50,18 +48,6 @@ import (
 		然后我们可以使用标准库中的其它的 Writer，在命令行应用或 web 服务器中使用这个函数。
 		随着你越来越熟悉标准库，你就会越了解这些在代码中重用的通用接口，它们会使你的软件在许多场景都可以重用。
  */
-
-func TestGreet(t *testing.T) {
-	buffer := bytes.Buffer{}
-	Greet(&buffer,"Chris")
-
-	got := buffer.String()
-	want := "Hello, Chris"
-
-	if got != want {
-		t.Errorf("got '%s' want '%s'", got, want)
-	}
-}
 
 //func Greet(writer *bytes.Buffer, name string) {
 //	fmt.Fprintf(writer, "Hello, %s", name)
