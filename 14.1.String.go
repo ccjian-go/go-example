@@ -88,8 +88,8 @@ func printChars2(s string) {
 }
 
 func printCharsAndBytes(s string) {
-	for index, rune := range s {
-		fmt.Printf("%c starts at byte %d\n", rune, index)
+	for index, r := range s {
+		fmt.Printf("%c starts at byte %d\n", r, index)
 	}
 }
 
