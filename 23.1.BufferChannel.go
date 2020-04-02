@@ -104,7 +104,7 @@ func result23(done chan bool) {
 	在 go worker 协程工作完成之前
 	wait一直阻塞等待完成
 	每个worker 协程工作完成 => result channel便得到一个 result 结果
-
+	可用于评判结果
  */
 func createWorkerPool23(noOfWorkers int) {
 	var wg sync.WaitGroup

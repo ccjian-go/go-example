@@ -56,9 +56,9 @@ func main() {
 
 	ch2 := make(chan string)
 	select {
-	case <-ch2:
-	default:
-		fmt.Println("default case executed")
+		case <-ch2:
+		default:
+			fmt.Println("default case executed")
 	}
 
 	ch := make(chan string)
