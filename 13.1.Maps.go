@@ -33,16 +33,16 @@ func main() {
 		"jamie": 15000,
 	}
 	personSalary2["mike"] = 9000
-	fmt.Println("personSalary map contents:", personSalary2)
+	fmt.Println("personSalary2 map contents:", personSalary2)
 
 	personSalary3 := map[string]int{}
-	fmt.Println("personSalary map contents:", personSalary3)
+	fmt.Println("personSalary3 map contents:", personSalary3)
 
 	personSalary4 := map[string]int{
 		"steve": 12000,
 		"jamie": 15000,
 	}
-	personSalary["mike"] = 9000
+	personSalary4["mike"] = 9000
 	employee := "jamie"
 	fmt.Println("Salary of", employee, "is", personSalary4[employee])
 	fmt.Println("Salary of joe is", personSalary4["joe"])
